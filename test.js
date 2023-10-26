@@ -24,8 +24,36 @@ function handleClick(target){
     const priceTotal = document.getElementById('find-total');
     const priceTotalStr = priceTotal.innerText;
     const priceTotalFloat = parseFloat(priceTotalStr);
-    console.log(typeof(priceTotalFloat));
-    if(priceTotalFloat == 0){
-        document.getElementById('purchase-btn').disabled 
+    // console.log(typeof(priceTotalFloat));
+    
+    const purchaseBtn = document.getElementById('purchase-btn')
+    if(priceTotalFloat > 0){
+        purchaseBtn.classList.remove('btn-disabled')
     }
+    
+    const applyBtn = document.getElementById('apply-btn');
+    if(priceTotalFloat > 200){
+        applyBtn.classList.remove('btn-disabled')
+    }
+    
+    applyBtn.addEventListener('click', function(){
+        const couponCode = document.getElementById('coupon-code');
+        const couponCodeValue = couponCode.value; 
+       
+       const discountTotal = document.getElementById('find-discount');
+    //    const discountTotalStr = discountTotal.innerText;
+    //    const discountTotalFloat = 
+      const grandTotal = document.getElementById('grand-total');
+        if(couponCodeValue == 'SELL200'){
+            
+            const discountPrice = (totalFixed * 20) / 100;
+            discountTotal.innerText = discountPrice;
+            // console.log(typeof discountPrice);
+             const mainTotal = priceTotalFloat - discountPrice;
+        grandTotal.innerText = mainTotal;
+        }
+       
+        // grandTotalFloat = parseFloat(grandTotal)
+    })
 }
+
